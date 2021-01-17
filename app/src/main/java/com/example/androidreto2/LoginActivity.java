@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.androidreto2.security.EncodePassword;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,8 +51,10 @@ public class LoginActivity extends AppCompatActivity {
                     rememberMeImplementation();
 
 
+                    cifrar();
+
                     intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                    //startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.text_error_empty_fields, Toast.LENGTH_LONG).show();
                 }
@@ -98,6 +101,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    private void cifrar(){
+        String hola="hola";
+        String cif = "";
+
+        EncodePassword encoder = new EncodePassword();
+        //cif= encoder.cifrarConClavePublica(hola);
+
+        myTxtForgotPassword.setText(cif);
+
+        encoder = new EncodePassword();
+        //cif= encoder.cifrarConClavePublica(hola);
+
+        //myEditTxtLogin.setText(cif);
+    }
 
 
 
