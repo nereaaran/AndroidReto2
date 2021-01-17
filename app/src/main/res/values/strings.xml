@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">AndroidReto2</string>
+
+    <string name="text_title_log_in">LOG IN</string>
+    <string name="text_title_sign_up">SIGN UP</string>
+    <string name="text_title_restore_password">RESTORE PASSWORD</string>
+
+    <string name="text_empty"> </string>
+    <string name="text_log_in">Log In</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="text_go_back">Go back</string>
+    <string name="text_no_account">Don\'t have an account?</string>
+    <string name="text_remember_me">Remember me</string>
+    <string name="text_forgot_password"> <u>Forgot your password?</u> </string>
+    <string name="text_restore">Restore</string>
+    <string name="text_restore_password_info">Introduce your email and we will send you an email with a new password</string>
+    <string name="text_animation_on">Book on</string>
+    <string name="text_animation_off">Book off</string>
+    <string name="text_date_input">dd/mm/yyyy</string>
+
+    <string name="text_login">Login</string>
+    <string name="text_password">Password</string>
+    <string name="text_name">Name</string>
+    <string name="text_email">Email</string>
+    <string name="text_dni">Dni</string>
+    <string name="text_birth_date">Birth date</string>
+
+
+    <string name="text_error_empty_fields">Fill out all text fields</string>
 </resources>
