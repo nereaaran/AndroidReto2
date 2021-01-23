@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText myEditTxtPassword = null;
     private Intent intent = null;
 
-    private SharedPreferences mySharedPrefrences = null;
-    private static final String PREFS_NAME = "PreferencesFile";
+    private SQLiteDatabase dataBase = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,21 +38,32 @@ public class LoginActivity extends AppCompatActivity {
 
         initializeObjects();
 
-        mySharedPrefrences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        getPreferencesData();
+        rememberMeGetData(1);
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         myBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkTextFieldsNotEmpty()) {
+
+
                     rememberMeImplementation();
-
-
                     intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.text_error_empty_fields, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        /**
+         * When "Login" text fields loses focus.
+         */
+        myEditTxtLogin.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    rememberMeGetData(2);
                 }
             }
         });
@@ -70,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         /**
-         * When the ForgotPassword textview is touched it goes to the RestorePassword activity.
+         * When the ForgotPassword text view is touched it goes to the RestorePassword activity.
          */
         myTxtForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,34 +106,61 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Searches in the database for user login and password and fills the text fields with the data.
+     *
+     * @param number A number to know if it is called from "OnCreate" or when "myEditTxtLogin" looses focus.
+     */
+    private void rememberMeGetData(int number) {
+        try {
+            dataBase = openOrCreateDatabase("library_db", Context.MODE_PRIVATE, null);
+            dataBase.execSQL("CREATE TABLE IF NOT EXISTS logindata(login VARCHAR, password VARCHAR);");
+            Cursor cursor = null;
 
+            if (number == 1) {
+                cursor = dataBase.rawQuery("SELECT * FROM logindata", null);
+            } else if (number == 2) {
+                cursor = dataBase.rawQuery("SELECT * FROM logindata WHERE login='" + myEditTxtLogin.getText().toString() + "'", null);
+            }
 
-
-
-
-    private void getPreferencesData() {
-
-
-    }
-
-    private void rememberMeImplementation() {
-        if (myChkRememberMe.isChecked()) {
-            SharedPreferences.Editor editor = mySharedPrefrences.edit();
-            editor.putString("pref_name", myEditTxtLogin.getText().toString());
-            editor.putString("pref_pass", myEditTxtPassword.getText().toString());
-            editor.putBoolean("pref_check", myChkRememberMe.isChecked());
-            editor.apply();
-        } else {
-            mySharedPrefrences.edit().clear().apply();
+            if (cursor.getCount() > 0) {
+                String login = null;
+                String password = null;
+                while (cursor.moveToNext()) {
+                    login = cursor.getString(0);
+                    password = cursor.getString(1);
+                }
+                myEditTxtLogin.setText(login);
+                myEditTxtPassword.setText(password);
+                myChkRememberMe.setChecked(true);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-
-
+    /**
+     * When Login button is pressed it verifies if "Remember Me" is checked and saves the login
+     * information in the database. If it is not checked it erases it.
+     */
+    private void rememberMeImplementation() {
+        try {
+            dataBase = openOrCreateDatabase("library_db", Context.MODE_PRIVATE, null);
+            dataBase.execSQL("CREATE TABLE IF NOT EXISTS logindata(login VARCHAR, password VARCHAR);");
+            if (myChkRememberMe.isChecked()) {
+                dataBase.execSQL("INSERT INTO logindata VALUES ('" + myEditTxtLogin.getText().toString() + "', '" + myEditTxtPassword.getText().toString() + "')");
+            } else {
+                dataBase.execSQL("DELETE FROM logindata WHERE login='" + myEditTxtLogin.getText().toString() + "' AND password='" + myEditTxtPassword.getText().toString() + "'");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
-     * Checks if all the textields contain text.
-     * @return A variable indicating if all textfields contain text or not.
+     * Checks if all the text fields contain text.
+     *
+     * @return A variable indicating if all text fields contain text or not.
      */
     private boolean checkTextFieldsNotEmpty() {
         if (myEditTxtLogin.getText().toString().isEmpty() || myEditTxtPassword.getText().toString().isEmpty()) {
