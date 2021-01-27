@@ -16,7 +16,6 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.androidreto2.security.EncodePassword;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkTextFieldsNotEmpty()) {
-
+                  
                     encode("hola");/////////////////////////////
 
                     rememberMeImplementation();

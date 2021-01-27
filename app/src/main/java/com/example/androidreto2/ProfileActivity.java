@@ -19,7 +19,7 @@ public class ProfileActivity extends AppCompatActivity {
         /**
          * Prueba de viajes entre pantalla. Borrarlos al final.
          */
-        Button principal = (Button) findViewById(R.id.irAPrincipial_profile);
+        /*Button principal = (Button) findViewById(R.id.irAPrincipial_profile);
         principal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
                 ProfileActivity.super.finish();
             }
-        });
+        });*/
         Button checkbox = (Button) findViewById(R.id.irACheckbook_profile);
         checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
