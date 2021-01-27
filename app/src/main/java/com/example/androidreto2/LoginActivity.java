@@ -45,7 +45,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkTextFieldsNotEmpty()) {
-
+                  
+                    encode("hola");/////////////////////////////
 
                     rememberMeImplementation();
                     intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -104,6 +105,16 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    /**
+     * Sends the password to the "EncodePassword" class and returns it encoded and in hexadecimal.
+     * @param password The password to be encoded.
+     * @return Te password encoded.
+     */
+    private String encode(String password){
+        EncodePassword encoder = new EncodePassword(this);
+        return encoder.encodeWithPublicKey(password);
     }
 
     /**
