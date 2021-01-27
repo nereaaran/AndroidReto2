@@ -4,29 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".CheckBookActivity">
 
     <Button
-        android:id="@+id/irACheckBook_main"
+        android:id="@+id/irAMiPerfil_checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check Book"
+        android:text="MiPerfil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.281" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/irAMiPerfil_main"
+        android:id="@+id/irAPrincipal_chekBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MIPERFIL"
+        android:text="Principal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+        app:layout_constraintVertical_bias="0.269" />
 </androidx.constraintlayout.widget.ConstraintLayout>
