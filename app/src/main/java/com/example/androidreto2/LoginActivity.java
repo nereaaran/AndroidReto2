@@ -16,9 +16,24 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.androidreto2.Interface.UsuarioAPI;
+import com.example.androidreto2.Interface.UsuarioesAPI;
+import com.example.androidreto2.Modelo.User;
+import com.example.androidreto2.Modelo.Usuarioes;
+import com.example.androidreto2.Retrofit.UsuarioFacadeREST;
+import com.example.androidreto2.Retrofit.UsuarioesFacadeREST;
+import com.example.androidreto2.security.EncodePassword;
+
+import java.util.Collection;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private UsuarioAPI usuarioAPI;
+    private UsuarioesAPI usuarioesAPI;
     private Button myBtnLogin = null;
     private Button myBtnSignup = null;
     private ToggleButton myTgBtnAnimation = null;
@@ -28,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText myEditTxtLogin = null;
     private EditText myEditTxtPassword = null;
     private Intent intent = null;
+
+    private Collection<User> listUsuarios;
 
     private SQLiteDatabase dataBase = null;
 
@@ -45,12 +62,72 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (checkTextFieldsNotEmpty()) {
-                  
-                    encode("hola");/////////////////////////////
+                    //Retrofit
+                    usuarioesAPI = UsuarioesFacadeREST.getClient();
+                    Call<Usuarioes> usuarioesCall = usuarioesAPI.consultarTodosAlumnos();
+                    usuarioesCall.enqueue(new Callback<Usuarioes>() {
+                        @Override
+                        public void onResponse(Call<Usuarioes> call, Response<Usuarioes> response) {
+                            if (response.isSuccessful()){
+                                Usuarioes usuarioes = (Usuarioes) response.body();
+                                listUsuarios = usuarioes.getUser();
 
-                    rememberMeImplementation();
-                    intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                                boolean esta=false;
+                                //Comprobamos el login
+                                esta=comprobarLogin(listUsuarios, myEditTxtLogin,myEditTxtPassword);
+                                if(esta){
+
+                                    UsuarioAPI usuarioAPI = UsuarioFacadeREST.getClient();
+                                    Call<User> userCall = usuarioAPI.buscarLoginYContrasenia(myEditTxtLogin.getText().toString(), myEditTxtPassword.getText().toString());
+                                    userCall.enqueue(new Callback<User>() {
+                                        @Override
+                                        public void onResponse(Call<User> call, Response<User> response) {
+                                            if (response.isSuccessful()) {
+                                                User user = (User) response.body();
+
+                                                Intent intent = new Intent(v.getContext(), CheckBookActivity.class);
+                                                intent.putExtra("User", user);
+                                                startActivity(intent);
+
+                                                Toast.makeText(getApplicationContext(), "Conectado", Toast.LENGTH_LONG).show();
+
+
+                                                rememberMeImplementation();
+                                                intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                startActivity(intent);
+                                            } else {
+                                                Toast.makeText(getApplicationContext(), "Login data incorrect", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<User> call, Throwable t) {
+                                            Toast.makeText(getApplicationContext(), "Servidor caido", Toast.LENGTH_LONG).show();
+                                            myTxtForgotPassword.setText(t.getMessage());
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+                        private boolean comprobarLogin(Collection<User> listUsuarios, EditText myEditTxtLogin, EditText myEditTxtPassword) {
+                            boolean existe=false;
+
+                            for (User user : listUsuarios){
+                                if (user.getLogin()==myEditTxtLogin.toString() && user.getPassword()==myEditTxtPassword.toString()){
+                                    existe=true;
+                                }
+                            }
+                            return existe;
+                        }
+
+                        @Override
+                        public void onFailure(Call<Usuarioes> call, Throwable t) {
+
+                        }
+                    });
+
+
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.text_error_empty_fields, Toast.LENGTH_LONG).show();
                 }
@@ -109,10 +186,11 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * Sends the password to the "EncodePassword" class and returns it encoded and in hexadecimal.
+     *
      * @param password The password to be encoded.
      * @return Te password encoded.
      */
-    private String encode(String password){
+    private String encode(String password) {
         EncodePassword encoder = new EncodePassword(this);
         return encoder.encodeWithPublicKey(password);
     }
@@ -191,8 +269,8 @@ public class LoginActivity extends AppCompatActivity {
         myTxtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword_login);
 
         myChkRememberMe = (CheckBox) findViewById(R.id.chkRememberMe_login);
-        myViewAnimationBook = (LottieAnimationView) findViewById(R.id.viewAnimationBook);
-        myViewAnimationBook.pauseAnimation();
+        // myViewAnimationBook = (LottieAnimationView) findViewById(R.id.viewAnimationBook);
+        //myViewAnimationBook.pauseAnimation();
 
         myEditTxtLogin = (EditText) findViewById(R.id.editTxtLogin_login);
         myEditTxtLogin.requestFocus();
