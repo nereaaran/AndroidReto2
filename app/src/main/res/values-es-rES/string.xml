@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Comic Sans</string>
+
+    <string name="text_title_log_in">LOG IN</string>
+    <string name="text_title_sign_up">SIGN UP</string>
+    <string name="text_title_restore_password">RESTAURAR CONTRASEÑA</string>
+    <string name="text_title_profile">MI PERFIL</string>
+
+    //SIGN IN
+    <string name="text_empty"> </string>
+    <string name="text_log_in">Iniciar sesion</string>
+    <string name="text_sign_up">Registrarse</string>
+    <string name="text_go_back">Volver</string>
+    <string name="text_no_account">No tienes cuenta?</string>
+    <string name="text_remember_me">Recuerdame</string>
+    <string name="text_forgot_password"> <u>Contraseña olvidada?</u> </string>
+    <string name="text_restore">Restaurar</string>
+    <string name="text_restore_password_info">Introduce tu email y te enviaremos una contraseña</string>
+    <string name="text_animation_on">Libro on</string>
+    <string name="text_animation_off">Libro off</string>
+    <string name="text_date_input">dd/mm/yyyy</string>
+
+    //SIGN UP
+    <string name="text_login">Login</string>
+    <string name="text_password">Contraseña</string>
+    <string name="text_name">Nombre</string>
+    <string name="text_email">Email</string>
+    <string name="text_dni">Dni</string>
+    <string name="text_birth_date">Fecha nacimiento</string>
+
+    //MY PROFILE
+    <string name="text_profile">Mi perfil</string>
+    <string name="text_current_pass">Contraseña actual</string>
+    <string name="text_new_pass">Nueva contraseña</string>
+    <string name="text_repeat_new_pass">Repite nueva contraseña</string>
+    <string name="text_change_password">Cambiar contraseña</string>
+
+    <string name="text_log_out">Cerrar Sesion</string>
+
+    //TOAST
+    <string name="text_error_empty_fields">Completa los campos de texto</string>
+    <string name="text_error_passwords_not_match">Las contraseñas no cuadran</string>
+    <string name="text_password_changed">Contraseña cambiada</string>
+    <string name="text_password_restored">Contraseña restaurada</string>
+    <string name="text_user_signup">Registrando usuario</string>
+</resources>
