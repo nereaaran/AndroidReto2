@@ -11,8 +11,17 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.androidreto2.Interface.UsuarioAPI;
+import com.example.androidreto2.Modelo.User;
+import com.example.androidreto2.Retrofit.UsuarioFacadeREST;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class RestorePasswordActivity extends AppCompatActivity {
 
+    private UsuarioAPI usuarioAPI;
     private Button myBtnGoBack = null;
     private Button myBtnRestore = null;
     private TextView myEditTxtEmail = null;
@@ -30,6 +39,22 @@ public class RestorePasswordActivity extends AppCompatActivity {
         myBtnRestore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                usuarioAPI = UsuarioFacadeREST.getClient();
+                Call<User> call = usuarioAPI.buscarUsuarioPorEmail(myEditTxtEmail.getText().toString());
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        if (response.code()==200){
+                            Toast.makeText(getApplicationContext(), R.string.text_error_empty_fields, Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
                 if (myEditTxtEmail.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), R.string.text_error_empty_fields, Toast.LENGTH_LONG).show();
                 } else {
