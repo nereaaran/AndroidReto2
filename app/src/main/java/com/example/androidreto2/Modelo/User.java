@@ -1,8 +1,9 @@
 package com.example.androidreto2.Modelo;
-
+/*
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -127,4 +128,4 @@ public class User implements Serializable {
     }
 
 
-}
+}*/

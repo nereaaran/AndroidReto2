@@ -1,5 +1,5 @@
 package com.example.androidreto2.Interface;
-
+/*
 import com.example.androidreto2.Modelo.Student;
 import com.example.androidreto2.Modelo.User;
 
@@ -29,11 +29,11 @@ public interface StudentAPI{
                                 @Field("lastAccess")String lastAccess,
                                 @Field("lastPasswordChange") String lastPasswordChange);
 
-    */
+
     @PUT
     public Call<Student> edit(Student student);
 
     @DELETE("alumno/{id}")
     public Call<Student> remove(@Path("id") String id);
 
-}
+}*/

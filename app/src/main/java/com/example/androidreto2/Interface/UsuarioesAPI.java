@@ -1,5 +1,5 @@
 package com.example.androidreto2.Interface;
-
+/*
 import com.example.androidreto2.Modelo.Usuarioes;
 
 import retrofit2.Call;
@@ -9,4 +9,4 @@ public interface UsuarioesAPI {
 
     @GET("usuario")
     public Call<Usuarioes> consultarTodosAlumnos();
-}
+}*/

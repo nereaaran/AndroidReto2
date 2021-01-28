@@ -1,6 +1,6 @@
 package com.example.androidreto2.Retrofit;
 
-
+/*
 import com.example.androidreto2.Interface.UsuarioAPI;
 
 import okhttp3.OkHttpClient;
@@ -33,4 +33,4 @@ public class UsuarioFacadeREST {
 
     }
 
-}
+}*/

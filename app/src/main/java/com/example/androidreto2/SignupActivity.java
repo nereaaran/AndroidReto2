@@ -36,22 +36,19 @@ public class SignupActivity extends AppCompatActivity {
 
         initializeObjects();
 
-
-
-
+        /**
+         * When the Signup button is pressed itchecks the textfields to sign up the user.
+         */
         myBtnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (checkTextFieldsNotEmpty()) {
-                    myBtnSignup.setText("OK");/////////////////////////////////////////////////////////////
-
+                    Toast.makeText(getApplicationContext(), R.string.text_user_signup, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), R.string.text_error_empty_fields, Toast.LENGTH_LONG).show();
                 }
             }
         });
-
-
 
         /**
          * A thread that is running to check the state of the textfields and update the progress bar.

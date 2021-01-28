@@ -1,6 +1,6 @@
 package com.example.androidreto2.Modelo;
 
-
+/*
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -10,14 +10,8 @@ import java.io.Serializable;
 public class Student extends User implements Serializable {
 
     private static final long seriaLVersionUID = 1L;
-    /**
-     * DNI del alumno.
-     */
     @Element(name ="dni")
     private String dni;
-    /**
-     * Fecha de nacimiento del alumno.
-     */
     @Element(name ="fechaNacimiento")
     private String fechaNacimiento;
 
@@ -37,4 +31,4 @@ public class Student extends User implements Serializable {
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-}
+}*/

@@ -1,5 +1,5 @@
 package com.example.androidreto2.Retrofit;
-
+/*
 import com.example.androidreto2.Interface.UsuarioAPI;
 import com.example.androidreto2.Interface.UsuarioesAPI;
 
@@ -32,4 +32,4 @@ public class UsuarioesFacadeREST {
         return API_SERVER;
 
     }
-}
+}*/

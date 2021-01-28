@@ -1,5 +1,5 @@
 package com.example.androidreto2.Interface;
-
+/*
 import com.example.androidreto2.Modelo.User;
 
 
@@ -28,4 +28,4 @@ public interface UsuarioAPI {
     public Call<User> buscarUsuarioPorLogin(@Path("login") String login);
 
     }
-
+*/

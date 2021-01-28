@@ -1,5 +1,5 @@
 package com.example.androidreto2.Retrofit;
-
+/*
 import com.example.androidreto2.Interface.StudentAPI;
 
 import okhttp3.OkHttpClient;
@@ -31,4 +31,4 @@ public class StudentFacadeREST {
         }
         return API_SERVER;
     }
-}
+}*/

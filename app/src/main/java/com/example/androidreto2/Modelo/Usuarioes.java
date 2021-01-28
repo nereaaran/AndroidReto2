@@ -1,5 +1,5 @@
 package com.example.androidreto2.Modelo;
-
+/*
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -17,4 +17,4 @@ public class Usuarioes {
     public void setUser(Collection<User> user) {
         this.user = user;
     }
-}
+}*/
