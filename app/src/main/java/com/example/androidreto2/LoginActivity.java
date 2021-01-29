@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -51,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
                     rememberMeImplementation();
 
                     String encodedPassword = encode(myEditTxtPassword.getText().toString());
-
+                    Log.i("CIFRADO", encodedPassword);
                     retrofit(encodedPassword);
 
                     intent = new Intent(getApplicationContext(), CheckBookActivity.class);
@@ -197,8 +198,8 @@ public class LoginActivity extends AppCompatActivity {
         myTxtForgotPassword = (TextView) findViewById(R.id.txtForgotPassword_login);
 
         myChkRememberMe = (CheckBox) findViewById(R.id.chkRememberMe_login);
-        // myViewAnimationBook = (LottieAnimationView) findViewById(R.id.viewAnimationBook);
-        //myViewAnimationBook.pauseAnimation();
+        myViewAnimationBook = (LottieAnimationView) findViewById(R.id.viewAnimationBook);
+        myViewAnimationBook.pauseAnimation();
 
         myEditTxtLogin = (EditText) findViewById(R.id.editTxtLogin_login);
         myEditTxtLogin.requestFocus();

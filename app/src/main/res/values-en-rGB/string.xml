@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Comic Sans</string>
+
+    <string name="text_title_log_in">LOG IN</string>
+    <string name="text_title_sign_up">SIGN UP</string>
+    <string name="text_title_restore_password">RESTORE PASSWORD</string>
+    <string name="text_title_profile">MY PROFILE</string>
+
+    //SIGN IN
+    <string name="text_empty"> </string>
+    <string name="text_log_in">Log In</string>
+    <string name="text_sign_up">Sign Up</string>
+    <string name="text_go_back">Go back</string>
+    <string name="text_no_account">Don\'t have an account?</string>
+    <string name="text_remember_me">Remember me</string>
+    <string name="text_forgot_password"> <u>Forgot your password?</u> </string>
+    <string name="text_restore">Restore</string>
+    <string name="text_restore_password_info">Introduce your email and we will send you an email with a new password</string>
+    <string name="text_animation_on">Book on</string>
+    <string name="text_animation_off">Book off</string>
+    <string name="text_date_input">dd/mm/yyyy</string>
+
+    //SIGN UP
+    <string name="text_login">Login</string>
+    <string name="text_password">Password</string>
+    <string name="text_name">Name</string>
+    <string name="text_email">Email</string>
+    <string name="text_dni">Dni</string>
+    <string name="text_birth_date">Birth date</string>
+
+    //MY PROFILE
+    <string name="text_profile">My Profile</string>
+    <string name="text_current_pass">Current password</string>
+    <string name="text_new_pass">New password</string>
+    <string name="text_repeat_new_pass">Repeat new password</string>
+    <string name="text_change_password">Change password</string>
+
+    <string name="text_log_out">Log out</string>
+
+    //TOAST
+    <string name="text_error_empty_fields">Fill out all text fields</string>
+    <string name="text_error_passwords_not_match">The passwords do not match</string>
+    <string name="text_password_changed">Password has been changed</string>
+    <string name="text_password_restored">Password has been restored</string>
+    <string name="text_user_signup">Signing up user</string>
+</resources>
